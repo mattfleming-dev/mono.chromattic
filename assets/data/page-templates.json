@@ -1,0 +1,30 @@
+{
+  "templates": {
+    "home": "assets/templates/pages/home.html",
+    "gallery": "assets/templates/pages/gallery.html",
+    "gallery-hive": "assets/templates/pages/gallery-hive.html",
+    "journal": "assets/templates/pages/journal.html",
+    "contact": "assets/templates/pages/contact.html"
+  },
+  "pages": {
+    "index.html": {
+      "template": "home"
+    },
+    "gallery.html": {
+      "template": "gallery"
+    },
+    "journal.html": {
+      "template": "journal",
+      "experimentalHive": false,
+      "articleTemplates": {
+        "cinematic": "assets/templates/articles/cinematic.html",
+        "editorial": "assets/templates/articles/editorial.html",
+        "magazine": "assets/templates/articles/magazine.html",
+        "photo-essay": "assets/templates/articles/photo-essay.html"
+      }
+    },
+    "contact.html": {
+      "template": "contact"
+    }
+  }
+}

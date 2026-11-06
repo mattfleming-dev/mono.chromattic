@@ -1,0 +1,28 @@
+{
+  "id": 5,
+  "title": "Blue Hour on the Runway",
+  "date": "2025-09-18",
+  "excerpt": "A long lens, high ISO and a few minutes of twilight: making an airport apron feel like a film still.",
+  "image": "assets/gallery/local/japan/DSCF0407.jpg",
+  "tags": [
+    "twilight",
+    "telephoto",
+    "aviation"
+  ],
+  "location": "Japan",
+  "imageCaption": "A decorated jet taxiing at twilight.",
+  "content": "## Compressing the scene\n\nA long focal length stacks the layers of an airport: aircraft, buildings, lights and sky all sit close together. This frame was made at about **150 mm**, f/6.3, 1/40 s and **ISO 3200**.\n\nHigh ISO is a fair trade when the alternative is a blurred subject. Modern sensors handle it well, and a little noise reads as film grain.\n",
+  "blocks": [
+    {
+      "type": "quote",
+      "text": "Twilight is the only time the sky and the lights are equally bright.",
+      "attribution": "Field notes"
+    },
+    {
+      "type": "image",
+      "collection": "urban-nocturnes",
+      "src": "assets/gallery/local/japan/DSC00151.jpg",
+      "caption": "Back in the city: a quiet crossroads late in the evening."
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "src": "assets/gallery/local/japan/DSC00100.jpg",
+    "title": "Tokyo Skytree After Dark",
+    "description": "The lit lattice of Tokyo Skytree rises above a street corner at dusk, its tip glowing red over passing traffic and office windows.",
+    "location": "Tokyo, Japan",
+    "camera": {
+      "make": "Sony",
+      "model": "ZV-1",
+      "lens": "24-70mm F1.8-2.8",
+      "settings": {
+        "aperture": "f/2.8",
+        "shutter": "1/30s",
+        "iso": 1600,
+        "focal_length": "9.4mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSC00111.jpg",
+    "title": "Waterway Reflections",
+    "description": "A narrow canal runs toward the Skytree at nightfall, holding the lights of the buildings along its banks in still, dark water.",
+    "location": "Tokyo, Japan",
+    "camera": {
+      "make": "Sony",
+      "model": "ZV-1",
+      "lens": "24-70mm F1.8-2.8",
+      "settings": {
+        "aperture": "f/2.8",
+        "shutter": "1/30s",
+        "iso": 1600,
+        "focal_length": "9.4mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSC00151.jpg",
+    "title": "The Quiet Hour",
+    "description": "A deserted crossroads late at night: a shuttered shopfront, a single street lamp and the warm glow of a small restaurant down the block.",
+    "location": "Japan",
+    "camera": {
+      "make": "Sony",
+      "model": "ZV-1",
+      "lens": "24-70mm F1.8-2.8",
+      "settings": {
+        "aperture": "f/2",
+        "shutter": "1/50s",
+        "iso": 1600,
+        "focal_length": "9.4mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 853
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF0407.jpg",
+    "title": "Twilight on the Tarmac",
+    "description": "A brightly decorated passenger jet taxis along the apron at twilight, with terminal buildings and runway lights behind it.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "18-300mm F/3.5-6.3 DiIII-A VC VXD B061X",
+      "settings": {
+        "aperture": "f/6.3",
+        "shutter": "1/40s",
+        "iso": 3200,
+        "focal_length": "148.6mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 853
+    }
+  }
+]

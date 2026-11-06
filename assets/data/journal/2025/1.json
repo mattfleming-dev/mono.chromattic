@@ -1,0 +1,40 @@
+{
+  "id": 1,
+  "title": "Tokyo After Dark",
+  "date": "2025-11-01",
+  "excerpt": "Night photography with a compact camera: where to stand, how slow to go, and why still water is the best friend of a city at night.",
+  "image": "assets/gallery/local/japan/DSC00100.jpg",
+  "tags": [
+    "night",
+    "city",
+    "tokyo"
+  ],
+  "location": "Tokyo, Japan",
+  "imageCaption": "Tokyo Skytree from a street corner, minutes after sunset.",
+  "content": "## Learning to wait for blue\n\nThe best night frames are rarely taken at night. The twenty minutes after sunset, when the sky still holds colour and the streetlights have just come on, give you detail in the shadows *and* glow in the highlights.\n\n### A simple routine\n\n1. Arrive before the light goes and pick a spot with a clear foreground.\n2. Take a test frame at **ISO 1600**, f/2.8 and around 1/30 s.\n3. Check the highlights, then adjust one setting at a time.\n4. Keep shooting as the sky darkens; the mood changes every few minutes.\n\n> A tripod is optional. A wall, a railing or a steady breath works nearly as well at these speeds.\n",
+  "blocks": [
+    {
+      "type": "paragraph-image",
+      "align": "right",
+      "collection": "urban-nocturnes",
+      "src": "assets/gallery/local/japan/DSC00111.jpg",
+      "caption": "A canal doubles the skyline.",
+      "text": "Water does half the work. A canal or river turns every window and sign into a second, softer composition, and the surface smooths out exposures that would blur on a busy street.\n\nLook for a bridge or embankment that lets you aim along the water rather than across it."
+    },
+    {
+      "type": "heading",
+      "text": "More from the same evening",
+      "level": 3
+    },
+    {
+      "type": "gallery",
+      "collection": "urban-nocturnes",
+      "columns": 2
+    },
+    {
+      "type": "quote",
+      "text": "Night does not hide the city. It edits it down to the lights that matter.",
+      "attribution": "Field notes"
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+[
+  {
+    "src": "assets/gallery/local/japan/DSCF9134.jpg",
+    "title": "Vending Machine & Fuji",
+    "description": "Two vending machines wrapped in a Great Wave and Mount Fuji design stand out against a plain concrete frontage.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "18-300mm F/3.5-6.3 DiIII-A VC VXD B061X",
+      "settings": {
+        "aperture": "f/6.3",
+        "shutter": "1/200s",
+        "iso": 160,
+        "focal_length": "18mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 853
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSC00201.jpg",
+    "title": "Station on an Overcast Day",
+    "description": "An empty railway platform under a flat grey sky, a yellow tactile strip running toward the city beyond the overhead wires.",
+    "location": "Japan",
+    "camera": {
+      "make": "Sony",
+      "model": "ZV-1",
+      "lens": "24-70mm F1.8-2.8",
+      "settings": {
+        "aperture": "f/8",
+        "shutter": "1/40s",
+        "iso": 125,
+        "focal_length": "9.4mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF0164.jpg",
+    "title": "River & Skyline",
+    "description": "A broad river bends toward a distant skyline in clear morning light, the far bank lined with apartment towers.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "XF18-55mmF2.8-4 R LM OIS",
+      "settings": {
+        "aperture": "f/8",
+        "shutter": "1/250s",
+        "iso": 320,
+        "focal_length": "18mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 853
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9047.jpg",
+    "title": "The Old Bicycle",
+    "description": "A bicycle leans against a wall on a quiet side street, flanked by potted plants and a small window.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "XF18-55mmF2.8-4 R LM OIS",
+      "settings": {
+        "aperture": "f/4",
+        "shutter": "1/60s",
+        "iso": 160,
+        "focal_length": "32.9mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9413.jpg",
+    "title": "A Nostalgic Corner",
+    "description": "Two cheerful character figures in chef hats sit on a yellow plinth outside a modern building, trees behind.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "XF18-55mmF2.8-4 R LM OIS",
+      "settings": {
+        "aperture": "f/4",
+        "shutter": "1/125s",
+        "iso": 160,
+        "focal_length": "18mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9563.jpg",
+    "title": "Thai Pavilion",
+    "description": "A gilded Thai-style pavilion with tiered roofs stands in a green garden, seen across a trimmed hedge.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "18-300mm F/3.5-6.3 DiIII-A VC VXD B061X",
+      "settings": {
+        "aperture": "f/8",
+        "shutter": "1/400s",
+        "iso": 640,
+        "focal_length": "21.5mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9833.jpg",
+    "title": "Skytree in Autumn Mist",
+    "description": "Seen from a footbridge over a waterway, the Skytree rises in haze above apartment blocks and autumn foliage.",
+    "location": "Tokyo, Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "XF18-55mmF2.8-4 R LM OIS",
+      "settings": {
+        "aperture": "f/8",
+        "shutter": "1/160s",
+        "iso": 640,
+        "focal_length": "18mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  }
+]

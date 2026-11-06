@@ -1,0 +1,41 @@
+{
+  "id": 2,
+  "title": "Gates, Guardians and Quiet Courtyards",
+  "date": "2025-10-24",
+  "excerpt": "A photo essay on small shrines: the repeating shapes, the weathered stone and the calm that a single gate can set up.",
+  "image": "assets/gallery/local/japan/DSCF9352.jpg",
+  "tags": [
+    "shrines",
+    "architecture",
+    "travel"
+  ],
+  "location": "Japan",
+  "imageCaption": "A vermilion torii at the entrance to a small neighbourhood shrine.",
+  "content": "## Small places, strong shapes\n\nBig shrines draw crowds. Small ones reward patience. A single torii, a pair of stone lions and a gravel yard are enough to build a frame around.\n\nThree things to look for:\n\n- **Thresholds** – gates, steps and doorways give the eye somewhere to start.\n- **Guardians** – komainu and statues add scale and character.\n- **Seasonal detail** – banners, flowers and fallen leaves date the picture without a caption.\n",
+  "blocks": [
+    {
+      "type": "image-list",
+      "title": "The set",
+      "collection": "shrines-and-sacred-spaces"
+    },
+    {
+      "type": "paragraph-image",
+      "align": "left",
+      "collection": "shrines-and-sacred-spaces",
+      "src": "assets/gallery/local/japan/DSCF9330.jpg",
+      "caption": "A komainu on its rock base.",
+      "text": "Stone lions are usually placed in a pair, one with its mouth open and one closed. Weather softens the carving until each one looks slightly different from its twin.\n\nShooting from low down, against the sky, gives them the presence the sculptor intended."
+    },
+    {
+      "type": "image",
+      "collection": "shrines-and-sacred-spaces",
+      "src": "assets/gallery/local/japan/DSCF9935.jpg",
+      "caption": "A seasonal flower display with the Skytree behind the shrine roofs."
+    },
+    {
+      "type": "quote",
+      "text": "The gate says: you are about to cross into somewhere else.",
+      "attribution": "Field notes"
+    }
+  ]
+}

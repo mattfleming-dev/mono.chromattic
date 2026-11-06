@@ -1,0 +1,38 @@
+[
+  {
+    "id": "urban-nocturnes",
+    "title": "Urban Nocturnes",
+    "description": "Neon, glass and the quiet hours after dark.",
+    "location": "Tokyo, Japan",
+    "hero": "assets/gallery/local/japan/DSC00100.jpg",
+    "count": 4,
+    "file": "urban-nocturnes.json"
+  },
+  {
+    "id": "shrines-and-sacred-spaces",
+    "title": "Shrines & Sacred Spaces",
+    "description": "Stone guardians, torii gates and ceremonial ground.",
+    "location": "Japan",
+    "hero": "assets/gallery/local/japan/DSCF9352.jpg",
+    "count": 4,
+    "file": "shrines-and-sacred-spaces.json"
+  },
+  {
+    "id": "wildlife-and-nature",
+    "title": "Wildlife & Nature",
+    "description": "Water, wings and patient light.",
+    "location": "Japan",
+    "hero": "assets/gallery/local/japan/DSCF9299.jpg",
+    "count": 8,
+    "file": "wildlife-and-nature.json"
+  },
+  {
+    "id": "wanderings",
+    "title": "Wanderings",
+    "description": "Stations, side streets and small detours along the way.",
+    "location": "Japan",
+    "hero": "assets/gallery/local/japan/DSCF9134.jpg",
+    "count": 7,
+    "file": "wanderings.json"
+  }
+]

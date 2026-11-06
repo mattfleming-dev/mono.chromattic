@@ -1,0 +1,170 @@
+[
+  {
+    "src": "assets/gallery/local/japan/DSCF9299.jpg",
+    "title": "Koi in Still Water",
+    "description": "A single orange koi turns just beneath the dark, rippled surface of a pond.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "XF18-55mmF2.8-4 R LM OIS",
+      "settings": {
+        "aperture": "f/5.6",
+        "shutter": "1/200s",
+        "iso": 640,
+        "focal_length": "55mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 853
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9470.jpg",
+    "title": "Penguins at Play",
+    "description": "Banded penguins huddle at the mouth of a rocky burrow, feathers still wet from the pool.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "18-300mm F/3.5-6.3 DiIII-A VC VXD B061X",
+      "settings": {
+        "aperture": "f/6.3",
+        "shutter": "1/500s",
+        "iso": 640,
+        "focal_length": "148.6mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 853
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9514.jpg",
+    "title": "Flamingo Study",
+    "description": "Pink flamingos pick across the dappled ground of a shaded enclosure, one with wings half open.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "18-300mm F/3.5-6.3 DiIII-A VC VXD B061X",
+      "settings": {
+        "aperture": "f/6.3",
+        "shutter": "1/250s",
+        "iso": 640,
+        "focal_length": "100.6mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9456.jpg",
+    "title": "Bird in Flight",
+    "description": "A lone bird glides across a clear blue sky, wings fully extended.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "18-300mm F/3.5-6.3 DiIII-A VC VXD B061X",
+      "settings": {
+        "aperture": "f/8",
+        "shutter": "1/800s",
+        "iso": 640,
+        "focal_length": "300mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 853
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9600.jpg",
+    "title": "Pelicans at Rest",
+    "description": "Pelicans drift across a reflective pond fringed with lotus leaves and city towers mirrored in the water.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "18-300mm F/3.5-6.3 DiIII-A VC VXD B061X",
+      "settings": {
+        "aperture": "f/8",
+        "shutter": "1/1250s",
+        "iso": 640,
+        "focal_length": "64.3mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 853
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9587.jpg",
+    "title": "Dragonfly, Close",
+    "description": "A dragonfly rests on a weathered stone ledge, wings spread flat above still water.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "18-300mm F/3.5-6.3 DiIII-A VC VXD B061X",
+      "settings": {
+        "aperture": "f/8",
+        "shutter": "1/500s",
+        "iso": 640,
+        "focal_length": "300mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 853
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9529.jpg",
+    "title": "Rhinoceros in the Shade",
+    "description": "A rhinoceros walks across packed earth between palms and a stone retaining wall.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "18-300mm F/3.5-6.3 DiIII-A VC VXD B061X",
+      "settings": {
+        "aperture": "f/6.3",
+        "shutter": "1/80s",
+        "iso": 800,
+        "focal_length": "64.3mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 853
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9570.jpg",
+    "title": "Elephant Behind the Wires",
+    "description": "An elephant stands in the sun behind a fence of tensioned cables, its head framed by the posts.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "18-300mm F/3.5-6.3 DiIII-A VC VXD B061X",
+      "settings": {
+        "aperture": "f/8",
+        "shutter": "1/250s",
+        "iso": 640,
+        "focal_length": "100.6mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  }
+]

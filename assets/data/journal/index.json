@@ -1,0 +1,100 @@
+[
+  {
+    "id": 1,
+    "title": "Tokyo After Dark",
+    "date": "2025-11-01",
+    "excerpt": "Night photography with a compact camera: where to stand, how slow to go, and why still water is the best friend of a city at night.",
+    "image": "assets/gallery/local/japan/DSC00100.jpg",
+    "tags": [
+      "night",
+      "city",
+      "tokyo"
+    ],
+    "file": "2025/1.json",
+    "template": "cinematic"
+  },
+  {
+    "id": 2,
+    "title": "Gates, Guardians and Quiet Courtyards",
+    "date": "2025-10-24",
+    "excerpt": "A photo essay on small shrines: the repeating shapes, the weathered stone and the calm that a single gate can set up.",
+    "image": "assets/gallery/local/japan/DSCF9352.jpg",
+    "tags": [
+      "shrines",
+      "architecture",
+      "travel"
+    ],
+    "file": "2025/2.json",
+    "template": "photo-essay"
+  },
+  {
+    "id": 3,
+    "title": "A Field Guide to Zoo Photography",
+    "date": "2025-10-12",
+    "excerpt": "Fences, glass, crowds and harsh sun: practical ways to make honest wildlife pictures where the animals are close but the conditions are not ideal.",
+    "image": "assets/gallery/local/japan/DSCF9470.jpg",
+    "tags": [
+      "wildlife",
+      "telephoto",
+      "technique"
+    ],
+    "file": "2025/3.json",
+    "template": "magazine"
+  },
+  {
+    "id": 4,
+    "title": "Notes from the Platform",
+    "date": "2025-09-30",
+    "excerpt": "Stations, side streets and a lone bicycle: finding pictures in the in-between spaces of a day spent walking.",
+    "image": "assets/gallery/local/japan/DSC00201.jpg",
+    "tags": [
+      "street",
+      "walking",
+      "everyday"
+    ],
+    "file": "2025/4.json",
+    "template": "editorial"
+  },
+  {
+    "id": 5,
+    "title": "Blue Hour on the Runway",
+    "date": "2025-09-18",
+    "excerpt": "A long lens, high ISO and a few minutes of twilight: making an airport apron feel like a film still.",
+    "image": "assets/gallery/local/japan/DSCF0407.jpg",
+    "tags": [
+      "twilight",
+      "telephoto",
+      "aviation"
+    ],
+    "file": "2025/5.json",
+    "template": "cinematic"
+  },
+  {
+    "id": 6,
+    "title": "Reading Camera Settings in Plain Terms",
+    "date": "2025-09-05",
+    "excerpt": "Every Gallery photo records its camera and exposure. Here is what those numbers mean and how they shaped a few frames.",
+    "image": "assets/gallery/local/japan/DSCF9299.jpg",
+    "tags": [
+      "technique",
+      "exposure",
+      "learning"
+    ],
+    "file": "2025/6.json",
+    "template": "editorial"
+  },
+  {
+    "id": 7,
+    "title": "How This Journal Works",
+    "date": "2025-08-20",
+    "excerpt": "A tour of the journal's layouts and content blocks, written as an article that uses them all.",
+    "image": "assets/gallery/local/japan/DSCF9935.jpg",
+    "tags": [
+      "guide",
+      "templates",
+      "documentation"
+    ],
+    "file": "2025/7.json",
+    "template": "magazine"
+  }
+]

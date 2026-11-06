@@ -1,0 +1,84 @@
+
+    <!-- Floating theme toggle (always visible, independent of panel state) -->
+    <button type="button" class="theme-fab glass" @click="toggleTheme" :aria-label="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
+        <i class="fa" :class="theme === 'dark' ? 'fa-sun-o' : 'fa-moon-o'" aria-hidden="true"></i>
+    </button>
+
+    <section class="site-inner">
+        <aside class="accordion-left" :class="{ open: isOpen }">
+            <accordion-panel
+                :is-open="isOpen"
+                :links="navLinks"
+                :open-submenus="openSubmenus"
+                :current-page="currentPage"
+                :theme="theme"
+                @toggle="toggleAccordion"
+                @nav-select="handleNavClick"
+                @toggle-submenu="toggleSubmenu"
+                @toggle-theme="toggleTheme">
+            </accordion-panel>
+        </aside>
+
+        <main class="site-main">
+            <section class="contact-page">
+                <!-- Shared page header (identical pattern to Gallery & Journal) -->
+                <header class="page-header">
+                    <p class="page-kicker">Get in touch</p>
+                    <h1 class="page-title">Contact</h1>
+                    <p class="page-subtitle">Commissions, prints and collaborations — tell me a little about what you have in mind.</p>
+                </header>
+
+                <section class="contact-section">
+                    <p class="contact-intro">I'm currently taking select commissions for 2025. For print inquiries, please include the collection and title of the work. Response times are a few days, not a few hours — thank you for your patience.</p>
+
+                    <form v-if="!submitted" class="contact-form-card glass-strong contact-form" @submit.prevent="handleSubmit">
+                        <div class="form-row">
+                            <label>
+                                <span>Name</span>
+                                <input type="text" v-model.trim="form.name" :aria-invalid="(errors.name ? 'true' : 'false')" placeholder="Your name" required>
+                                <small v-if="errors.name" class="form-error">{{ errors.name }}</small>
+                            </label>
+
+                            <label>
+                                <span>Email</span>
+                                <input type="email" v-model.trim="form.email" :aria-invalid="(errors.email ? 'true' : 'false')" placeholder="you@example.com" required>
+                                <small v-if="errors.email" class="form-error">{{ errors.email }}</small>
+                            </label>
+
+                            <label>
+                                <span>Subject</span>
+                                <input type="text" v-model.trim="form.subject" :aria-invalid="(errors.subject ? 'true' : 'false')" placeholder="What's this about?" required>
+                                <small v-if="errors.subject" class="form-error">{{ errors.subject }}</small>
+                            </label>
+
+                            <label>
+                                <span>Message</span>
+                                <textarea v-model.trim="form.message" rows="6" :aria-invalid="(errors.message ? 'true' : 'false')" placeholder="Tell me about your project, timeline, and budget…" required></textarea>
+                                <small v-if="errors.message" class="form-error">{{ errors.message }}</small>
+                            </label>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp; Send message
+                            </button>
+                        </div>
+                    </form>
+
+                    <div v-else class="contact-form-card glass-strong form-success-box">
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        <p>Thank you — your message has been recorded. I'll get back to you soon.</p>
+                        <button type="button" class="btn btn-ghost" @click="resetForm">Send another</button>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Site footer -->
+            <footer class="site-footer">
+                <div class="site-footer-social">
+                    <a href="#" aria-label="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                </div>
+                <p class="site-footer-copy">&copy; 2025 Photography &amp; Field Notes</p>
+            </footer>
+        </main>
+    </section>

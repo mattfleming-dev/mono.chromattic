@@ -1,0 +1,198 @@
+
+    <!-- Floating theme toggle (always visible, independent of panel state) -->
+    <button type="button" class="theme-fab glass" @click="toggleTheme" :aria-label="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
+        <i class="fa" :class="theme === 'dark' ? 'fa-sun-o' : 'fa-moon-o'" aria-hidden="true"></i>
+    </button>
+
+    <section class="site-inner">
+        <aside class="accordion-left" :class="{ open: isOpen }">
+            <accordion-panel
+                :is-open="isOpen"
+                :links="navLinks"
+                :open-submenus="openSubmenus"
+                :current-page="currentPage"
+                :theme="theme"
+                @toggle="toggleAccordion"
+                @nav-select="handleNavClick"
+                @toggle-submenu="toggleSubmenu"
+                @toggle-theme="toggleTheme">
+            </accordion-panel>
+        </aside>
+
+        <main class="site-main">
+            <section class="journal-page">
+                <!-- Shared page header (identical pattern to Gallery & Contact) -->
+                <header class="page-header">
+                    <div class="journal-heading-group">
+                        <p class="page-kicker">Field notes &amp; essays</p>
+                        <h1 class="page-title" id="journal-heading">Journal</h1>
+                        <p class="page-subtitle" v-if="!loading">{{ journalPosts.length }} entries — travel, craft and the spaces in between.</p>
+                    </div>
+
+                    <aside v-if="!loading" class="journal-filter-panel" aria-label="Journal filters">
+                        <section class="journal-filter-details" aria-label="Journal search and filters">
+                            <div class="journal-controls-filters">
+                                <label class="filter-field">
+                                    <select v-model="filters.year" aria-label="Filter by year">
+                                        <option value="">All years</option>
+                                        <option v-for="y in years" :key="y" :value="y">{{ y }}</option>
+                                    </select>
+                                </label>
+
+                                <div class="filter-search">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                    <input type="search" v-model="filters.q" placeholder="Search journal" aria-label="Search journal">
+                                </div>
+
+                                <details class="tag-filter">
+                                    <summary aria-label="Filter by tag">
+                                        <span>{{ filters.tag ? '#' + filters.tag : 'All tags' }}</span>
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    </summary>
+                                    <div class="tag-filter-menu" role="group" aria-label="Filter by tag">
+                                        <button type="button" class="tag-cloud-item cloud-meta" :class="{ active: !filters.tag }" @click="filters.tag = ''">
+                                            all<span class="tag-cloud-count">{{ journalPosts.length }}</span>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            v-for="t in tagCloud"
+                                            :key="t.name"
+                                            class="tag-cloud-item"
+                                            :class="[t.fontClass, { active: filters.tag === t.name }]"
+                                            :style="{ fontSize: t.size + 'rem', fontWeight: t.weight, '--tilt': t.tilt + 'deg' }"
+                                            @click="filters.tag = filters.tag === t.name ? '' : t.name">
+                                            #{{ t.name }}<span class="tag-cloud-count">{{ t.count }}</span>
+                                        </button>
+                                    </div>
+                                </details>
+                            </div>
+                        </section>
+                    </aside>
+                </header>
+
+                <div v-if="loading" class="loading"><i class="fa fa-spinner fa-spin"></i>&nbsp; Loading journal…</div>
+                <p v-else-if="loadError" class="loading">{{ loadError }}</p>
+
+                <template v-else>
+                    <div class="journal-content" ref="contentRef">
+                    <component
+                        v-if="selectedPost"
+                        :is="'article-layout-' + selectedPost.template"
+                        :post="selectedPostData"
+                        :formatted-date="formatDate(selectedPost.date)"
+                        :content-html="selectedHtml"
+                        :content-error="selectedContentError"
+                        :story-blocks="selectedStoryBlocks"
+                        :previous-article="prevArticle"
+                        :next-article="nextArticle"
+                        @close="closeArticle"
+                        @navigate="navigateToArticle"
+                        @filter-tag="filterByTag">
+                    </component>
+
+                    <!-- Journal card view (hidden while an article is open). -->
+                    <section
+                        v-show="!hiveEnabled || filters.shape !== 'honeycomb'"
+                        class="masonry-grid"
+                        :class="{ 'article-open': selectedPost, 'masonry-grid-linear': filteredPosts.length <= 4 }">
+                        <!-- Masonry grid items -->
+                        <article
+                            v-for="post in filteredPosts"
+                            :key="post.id"
+                            class="masonry-item glass"
+                            :class="excerptClasses[post.id] || ''"
+                            role="button"
+                            tabindex="0"
+                            @click="openArticle(post)"
+                            @keydown.enter.prevent="openArticle(post)"
+                            @keydown.space.prevent="openArticle(post)">
+                            <img :src="post.image" :alt="post.title" loading="lazy" decoding="async">
+                            <div class="masonry-item-content">
+                                <h3>{{ post.title }}</h3>
+                                <div class="post-meta">
+                                    <span class="post-date">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        {{ formatDate(post.date) }}
+                                    </span>
+                                </div>
+                                <p>{{ post.excerpt }}</p>
+                                <div class="post-tags">
+                                    <span v-for="tag in post.tags" :key="tag" class="tag">#{{ tag }}</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <p v-if="!selectedPost && filteredPosts.length === 0" class="no-results">
+                            <i class="fa fa-search" aria-hidden="true"></i>&nbsp; No entries match the current filters.
+                            <button type="button" class="filter-clear" @click="clearFilters">Clear filters</button>
+                        </p>
+                    </section>
+
+                    <!-- Experimental honeycomb view, available only when explicitly enabled in config. -->
+                    <section
+                        v-if="hiveEnabled"
+                        v-show="filters.shape === 'honeycomb'"
+                        class="hive-grid"
+                        :class="{ 'article-open': selectedPost, 'hive-hex': hiveIsHex }"
+                        :style="{ '--hive-offset': layout.offset + 'rem', '--hive-clip': hiveClip, '--hive-buffer': hiveBuffer, '--hive-w': hiveCell.w + 'px', '--hive-h': hiveCell.h + 'px' }">
+                        <div v-for="(col, i) in hiveBuckets" :key="i" class="hive-col" :class="{ 'hive-col-offset': i % 2 === 1 }">
+                            <div v-if="hiveIsHex && i % 2 === 1 && col[0]" class="hive-offset-cap" aria-hidden="true">
+                                <div class="hive-offset-cap-face">
+                                    <img :src="col[0].image" alt="">
+                                </div>
+                            </div>
+                            <article
+                                v-for="post in col"
+                                :key="post.id"
+                                class="hive-item"
+                                :class="{ 'hive-placeholder': post.isPlaceholder }"
+                                :role="post.isPlaceholder ? null : 'button'"
+                                :tabindex="post.isPlaceholder ? null : 0"
+                                @click="!post.isPlaceholder && openArticle(post)"
+                                @keydown.enter.prevent="!post.isPlaceholder && openArticle(post)"
+                                @keydown.space.prevent="!post.isPlaceholder && openArticle(post)">
+                                <div v-if="!post.isPlaceholder" class="hive-hex">
+                                    <img :src="post.image" :alt="post.title" loading="lazy" decoding="async">
+                                    <div class="hive-scrim" aria-hidden="true"></div>
+                                    <div class="hive-caption">
+                                        <h3>{{ post.title }}</h3>
+                                        <span class="post-date">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            &nbsp;{{ formatDate(post.date) }}
+                                        </span>
+                                        <div class="hive-tags">
+                                            <span v-for="tag in post.tags.slice(0, 3)" :key="tag" class="tag">#{{ tag }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-else class="hive-hex hive-placeholder-face" aria-hidden="true"></div>
+                            </article>
+
+                            <div v-if="hiveIsHex && i % 2 === 0 && col.length" class="hive-bottom-cap" aria-hidden="true">
+                                <div class="hive-bottom-cap-face">
+                                    <img v-if="col[col.length - 1].image" :src="col[col.length - 1].image" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <p v-if="!selectedPost && filteredPosts.length === 0" class="no-results">
+                            <i class="fa fa-search" aria-hidden="true"></i>&nbsp; No entries match the current filters.
+                            <button type="button" class="filter-clear" @click="clearFilters">Clear filters</button>
+                        </p>
+                    </section>
+
+                    </div>
+                </template>
+            </section>
+
+            <!-- Site footer -->
+            <footer class="site-footer">
+                <div class="site-footer-social">
+                    <a href="#" aria-label="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                </div>
+                <p class="site-footer-copy">&copy; 2025 Photography &amp; Field Notes</p>
+            </footer>
+        </main>
+    </section>

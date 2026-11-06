@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Portfolio | Contact</title>
+    <meta name="description" content="Get in touch — commissions, prints and collaborations.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' data: blob:;">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Theme must be applied before first paint: load synchronously in <head>. -->
+    <script src="assets/js/theme.js"></script>
+
+    <style>
+        /* ---------- Contact page (layout preserved, tokens + glass) ---------- */
+        .contact-page { padding-bottom: 4rem; }
+
+        .contact-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        .contact-intro {
+            font-size: 1.02rem;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            max-width: 60ch;
+            margin: 0 0 1.5rem;
+        }
+
+        .contact-form-card {
+            border-radius: 22px;
+            padding: clamp(1.75rem, 4vw, 2.5rem);
+        }
+
+        .form-row { display: grid; gap: 0.9rem; }
+
+        @media (max-width: 640px) {
+            .contact-section { padding: 0 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/accordion-panel.js"></script>
+<script>
+window.PAGE_APP_OPTIONS = {
+    data() {
+        return {
+            // Navigation state
+            isOpen: false,
+            openSubmenus: {},
+            navLinks: (window.NAV_LINKS || []).map(function (link) {
+                return Object.assign({}, link);
+            }),
+            currentPage: 'contact.html',
+            theme: typeof ThemeManager !== 'undefined' ? ThemeManager.get() : 'dark',
+
+            // Form state
+            form: { name: '', email: '', subject: '', message: '' },
+            errors: {},
+            submitted: false
+        };
+    },
+    watch: Object.assign({}, window.commonWatchers),
+    methods: Object.assign({}, window.commonMethods, {
+        toggleTheme() {
+            this.theme = ThemeManager.toggle();
+        },
+
+        validateForm() {
+            const errors = {};
+
+            if (!this.form.name) {
+                errors.name = 'Please enter your name.';
+            }
+
+            if (!this.form.email) {
+                errors.email = 'Please enter your email address.';
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.email)) {
+                errors.email = 'Please enter a valid email address.';
+            }
+
+            if (!this.form.subject) {
+                errors.subject = 'Please enter a subject.';
+            }
+
+            if (!this.form.message) {
+                errors.message = 'Please enter a message.';
+            } else if (this.form.message.length < 10) {
+                errors.message = 'Your message should be at least 10 characters long.';
+            }
+
+            this.errors = errors;
+            return Object.keys(errors).length === 0;
+        },
+
+        handleSubmit() {
+            if (!this.validateForm()) return;
+
+            // Client-side only: persist the message locally so the flow is testable.
+            try {
+                const messages = JSON.parse(localStorage.getItem('contact-messages') || '[]');
+                messages.push(Object.assign({ sentAt: new Date().toISOString() }, this.form));
+                localStorage.setItem('contact-messages', JSON.stringify(messages));
+            } catch (e) { /* Storage unavailable — still confirm the flow. */ }
+
+            this.submitted = true;
+        },
+
+        resetForm() {
+            this.form = { name: '', email: '', subject: '', message: '' };
+            this.errors = {};
+            this.submitted = false;
+        }
+    }),
+    mounted() {
+        window.addEventListener('keydown', this.handleKeyboardShortcuts);
+
+        // Populate the Journal submenu with real article links.
+        const self = this;
+        fetch('assets/data/journal/index.json')
+            .then(function (response) { return response.ok ? response.json() : Promise.reject(new Error('HTTP ' + response.status)); })
+            .then(function (posts) {
+                const journalLink = self.navLinks.find(function (link) { return link.id === 'journal'; });
+                if (journalLink && posts.length > 0) {
+                    journalLink.children = posts.map(function (post) {
+                        return { id: post.id, label: post.title, href: 'journal.html?article=' + post.id, articleId: post.id };
+                    });
+                }
+            })
+            .catch(function () { /* Submenu stays hidden if data is unavailable. */ });
+    },
+    beforeUnmount() {
+        window.removeEventListener('keydown', this.handleKeyboardShortcuts);
+        document.body.style.overflow = '';
+    }
+};
+</script>
+<script src="assets/js/page-template-loader.js"></script>
+</body>
+</html>

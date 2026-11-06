@@ -1,0 +1,39 @@
+{
+  "id": 6,
+  "title": "Reading Camera Settings in Plain Terms",
+  "date": "2025-09-05",
+  "excerpt": "Every Gallery photo records its camera and exposure. Here is what those numbers mean and how they shaped a few frames.",
+  "image": "assets/gallery/local/japan/DSCF9299.jpg",
+  "tags": [
+    "technique",
+    "exposure",
+    "learning"
+  ],
+  "location": "Japan",
+  "author": "Mono Chromattic",
+  "imageCaption": "A koi, photographed at f/5.6, 1/200 s and ISO 640.",
+  "content": "## What the lightbox shows\n\nOpen any photo in the Gallery and the info panel lists **camera, lens, aperture, shutter, ISO and focal length**. Together they describe how a picture was made.\n\n- **Aperture** (f/number) controls depth of field. Lower numbers blur the background more.\n- **Shutter** speed controls motion. 1/1000 s freezes a bird; 1/30 s lets lights streak.\n- **ISO** is sensor sensitivity. Higher means brighter but noisier.\n- **Focal length** sets the field of view.\n\n### Three examples\n\n| Photo | Aperture | Shutter | ISO |\n| --- | --- | --- | --- |\n| Koi in Still Water | f/5.6 | 1/200 s | 640 |\n| Torii in Autumn | f/4 | 1/50 s | 800 |\n| Tokyo Skytree After Dark | f/2.8 | 1/30 s | 1600 |\n",
+  "blocks": [
+    {
+      "type": "gallery",
+      "columns": 3,
+      "images": [
+        {
+          "collection": "wildlife-and-nature",
+          "src": "assets/gallery/local/japan/DSCF9299.jpg",
+          "caption": "f/5.6 - 1/200 s - ISO 640"
+        },
+        {
+          "collection": "shrines-and-sacred-spaces",
+          "src": "assets/gallery/local/japan/DSCF9352.jpg",
+          "caption": "f/4 - 1/50 s - ISO 800"
+        },
+        {
+          "collection": "urban-nocturnes",
+          "src": "assets/gallery/local/japan/DSC00100.jpg",
+          "caption": "f/2.8 - 1/30 s - ISO 1600"
+        }
+      ]
+    }
+  ]
+}

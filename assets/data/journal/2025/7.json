@@ -1,0 +1,44 @@
+{
+  "id": 7,
+  "title": "How This Journal Works",
+  "date": "2025-08-20",
+  "excerpt": "A tour of the journal's layouts and content blocks, written as an article that uses them all.",
+  "image": "assets/gallery/local/japan/DSCF9935.jpg",
+  "tags": [
+    "guide",
+    "templates",
+    "documentation"
+  ],
+  "location": "Documentation",
+  "author": "Mono Chromattic",
+  "imageCaption": "Every layout here is driven by plain JSON and Markdown.",
+  "content": "## One article, many layouts\n\nEach entry in `assets/data/journal/index.json` picks a **layout** with its `template` field: `cinematic`, `editorial`, `magazine` or `photo-essay`. The article body is ordinary **Markdown**, so you get headings, lists, quotes, tables and `code` for free.\n\n### Markdown features\n\n- Bold, *italic* and [links](https://commonmark.org/help/)\n- Numbered and bulleted lists\n- Tables and block quotes\n\n> Write the story in Markdown, then add blocks for the pictures.\n\n### Content blocks\n\nBlocks follow the Markdown in every layout. This article uses most of them: a paragraph with an image, an image list, a gallery and a quote.\n",
+  "blocks": [
+    {
+      "type": "paragraph-image",
+      "align": "left",
+      "collection": "shrines-and-sacred-spaces",
+      "src": "assets/gallery/local/japan/DSCF9137.jpg",
+      "caption": "paragraph-image, aligned left.",
+      "text": "A `paragraph-image` block places text beside a photo. Set `align` to `left` or `right`.\n\nImages can point at a Gallery photo with `collection` and `src`, so the title and alt text are reused automatically."
+    },
+    {
+      "type": "image-list",
+      "title": "image-list",
+      "collection": "wanderings",
+      "limit": 3
+    },
+    {
+      "type": "gallery",
+      "title": "gallery, three columns",
+      "collection": "wildlife-and-nature",
+      "columns": 3,
+      "limit": 3
+    },
+    {
+      "type": "quote",
+      "text": "Layouts change how a story feels. The story stays the same.",
+      "attribution": "quote block"
+    }
+  ]
+}

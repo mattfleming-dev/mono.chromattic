@@ -1,0 +1,86 @@
+[
+  {
+    "src": "assets/gallery/local/japan/DSCF9352.jpg",
+    "title": "Torii in Autumn",
+    "description": "A vermilion torii gate hung with votive banners marks the entrance to a small neighbourhood shrine.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "XF18-55mmF2.8-4 R LM OIS",
+      "settings": {
+        "aperture": "f/4",
+        "shutter": "1/50s",
+        "iso": 800,
+        "focal_length": "18mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9330.jpg",
+    "title": "Lion Guardians at the Gate",
+    "description": "A weathered stone komainu sits on a rough rock base in front of a small shrine hall with a curved tiled roof.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "XF18-55mmF2.8-4 R LM OIS",
+      "settings": {
+        "aperture": "f/4",
+        "shutter": "1/400s",
+        "iso": 800,
+        "focal_length": "39mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9137.jpg",
+    "title": "Guardians Among the Trees",
+    "description": "Seated bronze figures rest on a stone plinth beneath tall ginkgo trees, lit by soft light through the canopy.",
+    "location": "Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "18-300mm F/3.5-6.3 DiIII-A VC VXD B061X",
+      "settings": {
+        "aperture": "f/5",
+        "shutter": "1/160s",
+        "iso": 160,
+        "focal_length": "18mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  },
+  {
+    "src": "assets/gallery/local/japan/DSCF9935.jpg",
+    "title": "Chrysanthemum Festival",
+    "description": "A shrine courtyard dressed for the chrysanthemum season, with the Skytree standing over the rooftops behind.",
+    "location": "Tokyo, Japan",
+    "camera": {
+      "make": "Fujifilm",
+      "model": "X-S10",
+      "lens": "XF18-55mmF2.8-4 R LM OIS",
+      "settings": {
+        "aperture": "f/8",
+        "shutter": "1/400s",
+        "iso": 640,
+        "focal_length": "18mm"
+      }
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 1920
+    }
+  }
+]

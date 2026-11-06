@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Portfolio | Home</title>
+    <meta name="description" content="A quiet record of light and place — travel photography and field notes from the road.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' data: blob:;">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Theme must be applied before first paint: load synchronously in <head>. -->
+    <script src="assets/js/theme.js"></script>
+
+    <style>
+        /* ---------- Home page (layout preserved, tokens + glass) ---------- */
+        .home-section {
+            display: grid;
+            align-items: center;
+            padding: clamp(19px, 2.8vw, 38px);
+            padding-bottom: 0;
+        }
+
+        .home-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
+            gap: clamp(32px, 5vw, 72px);
+            align-items: center;
+        }
+
+        .home-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin: 0 0 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78rem;
+        }
+
+        .kicker-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent);
+            animation: kicker-pulse 2.6s ease-in-out infinite;
+        }
+
+        @keyframes kicker-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.55; transform: scale(0.82); }
+        }
+
+        .home-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.75rem, 5.2vw, 4.75rem);
+            font-weight: 800;
+            line-height: 1.02;
+            letter-spacing: -0.02em;
+            margin: 0 0 1.25rem;
+            color: var(--text);
+        }
+
+        .home-lead {
+            font-size: 1.02rem;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            max-width: 52ch;
+            margin: 0 0 2rem;
+        }
+
+        .home-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+        }
+
+        .home-visual {
+            position: relative;
+            margin: 0;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 4 / 5;
+            box-shadow: var(--shadow-md), var(--glass-highlight);
+            border: 1px solid var(--glass-border);
+        }
+
+        .home-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: saturate(1.05);
+            transition: transform 6s ease;
+        }
+
+        .home-visual:hover img { transform: scale(1.06); }
+
+        .home-visual-badge {
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            border-radius: 999px;
+            padding: 0.55rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .home-visual-badge span {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.01em;
+        }
+
+        .home-visual-badge small {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+        }
+
+        /* Recent articles panel */
+        /* Gap between the two sections: ~50px at a 1000px viewport, scaling
+           down on small screens and capping on large ones. */
+        .home-articles-section {
+            margin-top: clamp(32px, 5vw, 64px);
+            padding: clamp(19px, 2.8vw, 38px);
+        }
+
+        .home-panel {
+            max-width: 1280px;
+            margin: 0 auto;
+            border-radius: 24px;
+            padding: clamp(28px, 4vw, 56px);
+        }
+
+        .home-panel-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2.25rem;
+        }
+
+        .home-panel-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .home-panel-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            transition: color 0.25s ease, transform 0.25s ease;
+        }
+
+        .home-panel-link:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .article-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .article-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 1.4rem;
+            border-radius: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md), var(--glass-highlight);
+        }
+
+        .article-card-meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+        }
+
+        .article-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .article-card-excerpt {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-card-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 980px) {
+            .home-grid { grid-template-columns: 1fr; }
+            .home-visual { max-height: 460px; order: -1; aspect-ratio: 16 / 10; }
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/accordion-panel.js"></script>
+<script>
+window.PAGE_APP_OPTIONS = {
+    data() {
+        return {
+            isOpen: false,
+            openSubmenus: {},
+            navLinks: (window.NAV_LINKS || []).map(function (link) {
+                return Object.assign({}, link);
+            }),
+            currentPage: 'index.html',
+            theme: typeof ThemeManager !== 'undefined' ? ThemeManager.get() : 'dark',
+
+            recentPosts: [],
+            loadingPosts: true,
+            loadError: '',
+
+            // Random gallery photo for the hero (falls back to a fixed image if data is unavailable).
+            heroImage: {
+                src: 'assets/gallery/local/japan/DSCF9935.jpg',
+                alt: 'Chrysanthemum festival shrine with Tokyo Skytree in the background, Japan',
+                location: 'Tokyo, Japan'
+            }
+        };
+    },
+    watch: Object.assign({}, window.commonWatchers),
+    methods: Object.assign({}, window.commonMethods, {
+        toggleTheme() {
+            this.theme = ThemeManager.toggle();
+        },
+        async fetchRecentPosts() {
+            try {
+                const response = await fetch('assets/data/journal/index.json');
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const posts = await response.json();
+
+                // Keep the nav badge in sync with real content.
+                const journalLink = this.navLinks.find(function (link) { return link.id === 'journal'; });
+                if (journalLink) journalLink.badge = String(posts.length);
+
+                // Show the 3 most recent entries (index.json is sorted newest-first).
+                this.recentPosts = posts.slice(0, 3);
+                this.loadingPosts = false;
+            } catch (error) {
+                console.error('Failed to load journal posts:', error);
+                this.loadError = 'Could not load recent articles. Please refresh and try again.';
+                this.loadingPosts = false;
+            }
+        },
+        async fetchHeroImage() {
+            try {
+                const indexResponse = await fetch('assets/data/gallery/index.json');
+                if (!indexResponse.ok) return; // keep the fallback image
+                const collections = await indexResponse.json();
+                const collection = collections[Math.floor(Math.random() * collections.length)];
+                const response = await fetch('assets/data/gallery/' + collection.file);
+                if (!response.ok) return;
+                const photos = await response.json();
+                if (Array.isArray(photos) && photos.length > 0) {
+                    const photo = photos[Math.floor(Math.random() * photos.length)];
+                    this.heroImage = {
+                        src: photo.src,
+                        alt: photo.title + (photo.location ? ' — ' + photo.location : ''),
+                        location: photo.location || 'Japan'
+                    };
+                }
+            } catch (error) {
+                // Non-fatal: the fallback hero image stays in place.
+            }
+        }
+    }),
+    mounted() {
+        window.addEventListener('keydown', this.handleKeyboardShortcuts);
+        this.fetchRecentPosts();
+        this.fetchHeroImage();
+
+        // Populate the Journal submenu with real article links.
+        const self = this;
+        fetch('assets/data/journal/index.json')
+            .then(function (response) { return response.ok ? response.json() : Promise.reject(new Error(`HTTP ${response.status}`)); })
+            .then(function (posts) {
+                const journalLink = self.navLinks.find(function (link) { return link.id === 'journal'; });
+                if (journalLink && posts.length > 0) {
+                    journalLink.children = posts.map(function (post) {
+                        return { id: post.id, label: post.title, href: `journal.html?article=${post.id}`, articleId: post.id };
+                    });
+                }
+            })
+            .catch(function () { /* Submenu stays hidden if data is unavailable. */ });
+    },
+    beforeUnmount() {
+        window.removeEventListener('keydown', this.handleKeyboardShortcuts);
+        document.body.style.overflow = '';
+    }
+};
+</script>
+<script src="assets/js/page-template-loader.js"></script>
+</body>
+</html>

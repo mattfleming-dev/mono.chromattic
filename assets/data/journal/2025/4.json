@@ -1,0 +1,38 @@
+{
+  "id": 4,
+  "title": "Notes from the Platform",
+  "date": "2025-09-30",
+  "excerpt": "Stations, side streets and a lone bicycle: finding pictures in the in-between spaces of a day spent walking.",
+  "image": "assets/gallery/local/japan/DSC00201.jpg",
+  "tags": [
+    "street",
+    "walking",
+    "everyday"
+  ],
+  "location": "Japan",
+  "author": "Mono Chromattic",
+  "imageCaption": "An empty platform on an overcast day.",
+  "content": "## The in-between\n\nMost of a travel day is spent moving between places. Those stretches, waiting on a platform, crossing a bridge, turning down a side street, produce pictures that no itinerary lists.\n\n### What to look for\n\n- Strong **leading lines**: tracks, tactile paving, railings.\n- **Quiet colour**: one bright thing in a muted scene.\n- **Evidence of people** without the people themselves.\n",
+  "blocks": [
+    {
+      "type": "image-list",
+      "title": "Along the way",
+      "collection": "wanderings",
+      "limit": 4
+    },
+    {
+      "type": "paragraph-image",
+      "align": "left",
+      "collection": "wanderings",
+      "src": "assets/gallery/local/japan/DSCF9047.jpg",
+      "caption": "A bicycle, plants and a window.",
+      "text": "Overcast light is kind to side streets. Colours stay saturated, shadows stay open and nothing needs rescuing in editing.\n\nWalk past a scene once, then turn around. The return view is often better."
+    },
+    {
+      "type": "image",
+      "collection": "wanderings",
+      "src": "assets/gallery/local/japan/DSCF9134.jpg",
+      "caption": "Even a vending machine can be a small piece of graphic design."
+    }
+  ]
+}

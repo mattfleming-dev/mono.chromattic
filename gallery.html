@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Portfolio | Gallery</title>
+    <meta name="description" content="Curated photography collections — urban nocturnes, shrines, wildlife and wanderings from the road.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' data: blob:;">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Theme must be applied before first paint: load synchronously in <head>. -->
+    <script src="assets/js/theme.js"></script>
+
+    <style>
+        /* ---------- Gallery page: index -> masonry -> lightbox ---------- */
+        .gallery-page { padding-bottom: 4rem; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+        .back-link:hover { color: var(--text); border-color: var(--accent); transform: translateX(-3px); }
+
+        /* Collection index (cards with hero shot) */
+        .collection-index {
+            max-width: 1400px;
+            margin: 2.5rem auto 0;
+            padding: 0 2.5rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .collection-card {
+            display: flex;
+            flex-direction: column;
+            border-radius: 18px;
+            overflow: hidden;
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+            backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-sm), var(--glass-highlight);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .collection-card:hover, .collection-card:focus {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: color-mix(in srgb, var(--accent) 40%, var(--glass-border));
+            outline: none;
+        }
+
+        .collection-card-hero { position: relative; height: 300px; overflow: hidden; }
+        .collection-card-hero img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            filter: saturate(1.05);
+            transition: transform 5s ease, filter 0.4s ease;
+        }
+        .collection-card:hover .collection-card-hero img { transform: scale(1.06); filter: saturate(1.12); }
+
+        .collection-card-count {
+            position: absolute; top: 1rem; right: 1rem;
+            padding: 0.3rem 0.8rem; border-radius: 999px;
+            font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em;
+            color: var(--text);
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+        }
+
+        .collection-card-body { padding: 1.5rem 1.75rem 1.75rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        .collection-card-location {
+            font-family: 'Space Mono', monospace; font-size: 0.72rem;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin: 0;
+        }
+        .collection-card-title {
+            font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 2.2vw, 2rem);
+            font-weight: 600; line-height: 1.15; color: var(--text); margin: 0;
+        }
+        .collection-card-desc { font-size: 0.92rem; line-height: 1.65; color: var(--text-secondary); margin: 0; }
+        .collection-card-link {
+            margin-top: 0.75rem; display: inline-flex; align-items: center; gap: 0.5rem;
+            font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--accent);
+        }
+        .collection-card:hover .collection-card-link i { transform: translateX(4px); }
+        .collection-card-link i { transition: transform 0.25s ease; }
+
+        /* Hive Gallery template: alternating collection hexagons and banners. */
+        .collection-hive-index {
+            max-width: 1500px;
+            margin: 3rem auto 0;
+            padding: 0 2.5rem;
+            display: grid;
+            gap: clamp(2.5rem, 6vw, 6rem);
+        }
+        .collection-hive-row {
+            display: flex;
+            align-items: stretch;
+            min-width: 0;
+            cursor: pointer;
+        }
+        .collection-hive-row-reverse { flex-direction: row-reverse; }
+        .collection-hive-hex {
+            position: relative;
+            z-index: 1;
+            flex: 0 0 clamp(280px, 34vw, 520px);
+            aspect-ratio: 1.1547;
+            overflow: hidden;
+            background: var(--glass-bg);
+            clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+            -webkit-clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+        }
+        .collection-hive-hex img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 5s ease; }
+        .collection-hive-unavailable { display: grid; width: 100%; height: 100%; place-items: center; color: var(--text-muted); font-size: 1.5rem; }
+        .collection-hive-banner {
+            flex: 1 1 auto;
+            min-width: 0;
+            margin-left: clamp(-8rem, -8.5vw, -4.75rem);
+            padding: clamp(2rem, 5vw, 4rem) clamp(2.5rem, 7vw, 6.5rem);
+            border-radius: 0 18px 18px 0;
+            text-align: right;
+            box-shadow: var(--shadow-sm), var(--glass-highlight);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .collection-hive-row-reverse .collection-hive-banner {
+            margin-right: clamp(-8rem, -8.5vw, -4.75rem);
+            margin-left: 0;
+            border-radius: 18px 0 0 18px;
+            text-align: left;
+        }
+        .collection-hive-banner h2 {
+            margin: 0.4rem 0 0.7rem;
+            color: var(--text);
+            font: 600 clamp(1.8rem, 3.4vw, 3.25rem) / 1.05 'Playfair Display', serif;
+        }
+        .collection-hive-banner > p:not(.collection-card-location) { max-width: 44rem; margin: 0 0 0 auto; color: var(--text-secondary); font-size: clamp(0.95rem, 1.2vw, 1.15rem); line-height: 1.65; }
+        .collection-hive-row-reverse .collection-hive-banner > p:not(.collection-card-location) { margin-left: 0; }
+        .collection-hive-banner > span { display: inline-flex; gap: 0.6rem; margin-top: 1.25rem; color: var(--accent); font: 0.78rem 'Space Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; }
+        .collection-hive-row:hover .collection-hive-hex, .collection-hive-row:focus-visible .collection-hive-hex { transform: scale(1.025); }
+        .collection-hive-row:hover .collection-hive-hex img { transform: scale(1.06); }
+        .collection-hive-row:hover .collection-hive-banner, .collection-hive-row:focus-visible .collection-hive-banner { border-color: color-mix(in srgb, var(--accent) 45%, var(--glass-border)); box-shadow: var(--shadow-md); }
+        .collection-hive-row:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 18px; }
+
+        .gallery-photo-hive {
+            display: flex;
+            width: fit-content;
+            max-width: 100%;
+            margin: 3rem auto 5rem;
+            --gallery-hive-w: 320px;
+            --gallery-hive-h: 277px;
+            --gallery-hive-buffer: clamp(6px, 0.6vw, 12px);
+        }
+        .gallery-photo-hive-column { display: flex; flex: 0 0 var(--gallery-hive-w); flex-direction: column; }
+        .gallery-photo-hive-column + .gallery-photo-hive-column { margin-left: calc(var(--gallery-hive-w) * -0.25); }
+        .gallery-photo-hive-column-offset { transform: translateY(calc(var(--gallery-hive-h) * 0.5)); }
+        .gallery-photo-hive-item { position: relative; width: 100%; aspect-ratio: 1.1547; cursor: pointer; transition: transform 0.25s ease; }
+        .gallery-photo-hive-item:hover, .gallery-photo-hive-item:focus-visible { z-index: 2; transform: scale(1.025); outline: none; }
+        .gallery-photo-hive-face { position: absolute; inset: var(--gallery-hive-buffer); display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--glass-bg); clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); -webkit-clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3)); }
+        .gallery-photo-hive-face img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 4s ease; }
+        .gallery-photo-hive-item:hover .gallery-photo-hive-face img { transform: scale(1.06); }
+        .gallery-photo-hive-unavailable { color: var(--text-muted); font-size: 1.4rem; }
+        .gallery-photo-hive-scrim { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(5, 7, 10, 0.7), rgba(5, 7, 10, 0.12) 48%, rgba(5, 7, 10, 0.7)); }
+        .gallery-photo-hive-caption { position: relative; z-index: 1; width: 100%; padding: 1.25rem 14%; text-align: center; color: #fff; }
+        .gallery-photo-hive-caption span { display: block; font: 0.68rem 'Space Mono', monospace; letter-spacing: 0.06em; opacity: 0.8; }
+        .gallery-photo-hive-caption h2 { margin: 0.45rem 0 0; font: 600 clamp(1.05rem, 1.3vw, 1.45rem) / 1.2 'Playfair Display', serif; overflow-wrap: anywhere; }
+
+        /* Masonry view of a single collection */
+        .masonry-grid {
+            max-width: 1400px;
+            margin: 2.5rem auto 0;
+            padding: 0 2.5rem;
+            column-count: 4;
+            column-gap: 1.5rem;
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .masonry-item:hover, .masonry-item:focus {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: color-mix(in srgb, var(--accent) 40%, var(--glass-border));
+            outline: none;
+        }
+        .masonry-image-wrap { position: relative; overflow: hidden; background: var(--bg); }
+        .masonry-image-wrap img { width: 100%; display: block; filter: saturate(1.04); transition: transform 4s ease, filter 0.4s ease; }
+        .masonry-item:hover .masonry-image-wrap img { transform: scale(1.04); filter: saturate(1.1); }
+        .masonry-item-content { padding: 1.1rem 1.25rem 1.25rem; }
+        .masonry-item-content h3 {
+            font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600;
+            line-height: 1.3; color: var(--text); margin: 0 0 0.4rem;
+        }
+        .masonry-meta {
+            display: flex; flex-wrap: wrap; gap: 0.9rem;
+            font-family: 'Space Mono', monospace; font-size: 0.68rem;
+            letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 0.5rem;
+        }
+        .masonry-excerpt {
+            font-size: 0.85rem; line-height: 1.6; color: var(--text-secondary); margin: 0;
+            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+        }
+
+        /* Fallback for images that fail to load (e.g. broken cloud links) */
+        .image-unavailable {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 0.6rem; min-height: 220px; padding: 1.5rem;
+            color: var(--text-muted); font-family: 'Space Mono', monospace; font-size: 0.75rem;
+            background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(127,127,127,0.06) 10px, rgba(127,127,127,0.06) 20px);
+        }
+        .image-unavailable i { font-size: 1.6rem; }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed; inset: 0; z-index: 1001;
+            display: flex; align-items: center; justify-content: center; padding: 2rem;
+            background: var(--scrim);
+            -webkit-backdrop-filter: blur(14px) saturate(130%);
+            backdrop-filter: blur(14px) saturate(130%);
+        }
+        .lightbox-content {
+            display: grid; grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
+            width: min(1500px, 100%); max-height: 90vh;
+        }
+        .lightbox-image {
+            width: 100%; height: 100%; max-height: 90vh; object-fit: contain; object-position: right center; display: block;
+            border-radius: 18px 0 0 18px; background: var(--bg);
+        }
+        .lightbox-info {
+            padding: 2rem 1.75rem; border-radius: 0 18px 18px 0;
+            overflow-y: auto; display: flex; flex-direction: column; gap: 0.9rem;
+        }
+        .lightbox-collection {
+            font-family: 'Space Mono', monospace; font-size: 0.7rem;
+            text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin: 0;
+        }
+        .lightbox-title {
+            font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+            font-weight: 700; line-height: 1.15; margin: 0; color: var(--text);
+        }
+        .lightbox-desc { font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 0; }
+        .lightbox-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+        .lightbox-tags li {
+            padding: 0.25rem 0.7rem; border-radius: 999px;
+            font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.05em;
+            color: var(--text-secondary); border: 1px solid var(--glass-border); background: var(--glass-bg);
+        }
+        .lightbox-exif { margin: 0.5rem 0 0; padding-top: 1rem; border-top: 1px solid var(--border); display: grid; gap: 0.45rem; }
+        .exif-row { display: flex; justify-content: space-between; gap: 1rem; font-family: 'Space Mono', monospace; font-size: 0.72rem; }
+        .exif-row dt { color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+        .exif-row dd { margin: 0; color: var(--text-secondary); text-align: right; }
+        .lightbox-nav-row { margin-top: auto; padding-top: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .lightbox-counter { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.1em; color: var(--text-muted); }
+        .lightbox-btn {
+            width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; font-size: 16px; color: var(--text); cursor: pointer;
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+        .lightbox-btn:hover { transform: scale(1.08); }
+        .lightbox-close {
+            position: absolute; top: 1.25rem; right: 1.25rem; width: 46px; height: 46px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; font-size: 18px; color: var(--text); cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+        .lightbox-close:hover { transform: rotate(90deg) scale(1.05); }
+
+        .lightbox-fade-enter-active, .lightbox-fade-leave-active { transition: opacity 0.3s ease; }
+        .lightbox-fade-enter-from, .lightbox-fade-leave-to { opacity: 0; }
+        .lightbox-fade-enter-active .lightbox-content, .lightbox-fade-leave-active .lightbox-content { transition: transform 0.3s ease; }
+        .lightbox-fade-enter-from .lightbox-content { transform: scale(0.97); }
+
+        @media (max-width: 1200px) { .masonry-grid { column-count: 3; } }
+        @media (max-width: 900px) { .masonry-grid { column-count: 2; } }
+        @media (max-width: 768px) {
+            .masonry-grid { column-count: 1; padding: 0 1.25rem; }
+            .collection-index { grid-template-columns: 1fr; padding: 0 1.25rem; }
+            .collection-card-hero { height: 220px; }
+            .collection-hive-index { padding: 0 1.25rem; gap: 2.5rem; }
+            .collection-hive-row, .collection-hive-row-reverse { height: auto; flex-direction: column; align-items: stretch; }
+            .collection-hive-hex {
+                align-self: center;
+                flex-basis: min(94vw, 600px);
+            }
+            .collection-hive-banner, .collection-hive-row-reverse .collection-hive-banner {
+                margin: calc(-1 * (min(40.7vw, 260px) + 1.5rem)) 0 0;
+                padding: calc(min(40.7vw, 260px) + 2.75rem) 1.5rem 1.75rem;
+                border-radius: 0 0 14px 14px;
+                text-align: left;
+            }
+            .collection-hive-row-reverse .collection-hive-banner > p:not(.collection-card-location) { margin-left: 0; }
+            .lightbox { padding: 0.75rem; }
+            .lightbox-content { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; max-height: 94vh; overflow-y: auto; }
+            .lightbox-image { border-radius: 14px 14px 0 0; max-height: 46vh; object-position: center bottom; }
+            .lightbox-info { border-radius: 0 0 14px 14px; padding: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/accordion-panel.js"></script>
+<script>
+window.PAGE_APP_OPTIONS = {
+    data() {
+        return {
+            // Navigation state
+            isOpen: false,
+            openSubmenus: {},
+            navLinks: (window.NAV_LINKS || []).map(function (link) {
+                return Object.assign({}, link);
+            }),
+            currentPage: 'gallery.html',
+            theme: typeof ThemeManager !== 'undefined' ? ThemeManager.get() : 'dark',
+
+            // Gallery state (client-side rendered, like the journal page)
+            view: 'index',              // 'index' | 'collection'
+            windowWidth: typeof window !== 'undefined' ? window.innerWidth : 1440,
+            collections: [],            // from assets/data/gallery/index.json
+            activeCollection: null,     // the collection currently open
+            images: [],                 // images of the active collection
+            loading: true,              // index loading
+            loadingCollection: false,
+            loadError: '',
+            collectionError: '',
+            selectedIndex: -1,          // -1 = lightbox closed
+            failed: {}                  // src -> true for images that failed to load
+        };
+    },
+    computed: {
+        totalImages() {
+            return this.collections.reduce(function (sum, c) { return sum + (c.count || 0); }, 0);
+        },
+
+        selectedImage() {
+            if (this.selectedIndex < 0) return null;
+            return this.images[this.selectedIndex] || null;
+        },
+
+        galleryHiveColumnCount() {
+            if (this.windowWidth <= 640) return 1;
+            if (this.windowWidth <= 1050) return 2;
+            if (this.windowWidth <= 1500) return 3;
+            return 4;
+        },
+
+        galleryHiveCellWidth() {
+            const availableWidth = Math.max(280, this.windowWidth - 330);
+            const columnPitch = this.galleryHiveColumnCount * 0.75 + 0.25;
+            return Math.max(220, Math.min(360, Math.floor(availableWidth / columnPitch) - 2));
+        },
+
+        galleryHiveBuckets() {
+            const columns = Array.from({ length: this.galleryHiveColumnCount }, function () { return []; });
+            this.images.forEach(function (image, index) {
+                columns[index % columns.length].push(image);
+            });
+            return columns;
+        },
+
+        galleryHiveStyle() {
+            const width = this.galleryHiveCellWidth;
+            return {
+                '--gallery-hive-w': width + 'px',
+                '--gallery-hive-h': Math.round(width / 1.1547005) + 'px'
+            };
+        },
+
+        /** Derived EXIF display rows — only meaningful values are shown. */
+        selectedExif() {
+            const image = this.selectedImage;
+            if (!image) return [];
+            const rows = [];
+            const camera = image.camera || {};
+            const settings = (camera.settings && typeof camera.settings === 'object') ? camera.settings : {};
+            const push = function (label, value) {
+                if (value && value !== 'N/A' && value !== 'Unknown') rows.push({ label: label, value: String(value) });
+            };
+            push('Camera', [camera.make, camera.model].filter(Boolean).join(' '));
+            push('Lens', camera.lens);
+            if (typeof settings === 'object') {
+                push('Aperture', settings.aperture);
+                push('Shutter', settings.shutter);
+                push('ISO', settings.iso);
+                push('Focal length', settings.focal_length);
+            }
+            if (image.exif && image.exif.DateTime) {
+                rows.push({ label: 'Captured', value: this.formatDate(image.exif.DateTime) });
+            }
+            if (image.dimensions && image.dimensions.width) {
+                rows.push({ label: 'Dimensions', value: image.dimensions.width + ' × ' + image.dimensions.height + ' px' });
+            }
+            return rows;
+        }
+    },
+    watch: Object.assign({}, window.commonWatchers, {
+        /** Side effects of the lightbox opening/closing. */
+        selectedIndex(newIndex, oldIndex) {
+            const opened = newIndex >= 0 && oldIndex < 0;
+            const closed = newIndex < 0 && oldIndex >= 0;
+            document.body.style.overflow = (newIndex >= 0 || this.isOpen) ? 'hidden' : '';
+            if (opened) {
+                this._restoreFocusTarget = document.activeElement;
+                this.$nextTick(function () {
+                    const closeBtn = this.$refs.lightboxClose;
+                    if (closeBtn) closeBtn.focus();
+                });
+            } else if (closed && this._restoreFocusTarget) {
+                const target = this._restoreFocusTarget;
+                this._restoreFocusTarget = null;
+                if (target && document.contains(target)) target.focus();
+            }
+        }
+    }),
+    methods: Object.assign({}, window.commonMethods, {
+        updateGalleryHiveMetrics() {
+            this.windowWidth = window.innerWidth;
+        },
+
+        toggleTheme() {
+            this.theme = ThemeManager.toggle();
+        },
+
+        /** Load the collection index (one entry per gallery). */
+        async loadIndex() {
+            try {
+                const res = await fetch('assets/data/gallery/index.json');
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                this.collections = await res.json();
+                this.loading = false;
+
+                // Deep-link support: gallery.html?collection=<id>
+                const params = new URLSearchParams(window.location.search);
+                const wanted = params.get('collection');
+                if (wanted && this.collections.some(function (c) { return c.id === wanted; })) {
+                    this.openCollection(wanted, true);
+                }
+            } catch (error) {
+                console.error('Failed to load gallery index:', error);
+                this.loadError = 'Could not load the gallery. Please refresh and try again.';
+                this.loading = false;
+            }
+        },
+
+        /** Open a single collection: fetch its own JSON data file. */
+        async openCollection(id, skipHistory) {
+            const collection = this.collections.find(function (c) { return c.id === id; });
+            if (!collection) return;
+            this.activeCollection = collection;
+            this.view = 'collection';
+            this.images = [];
+            this.collectionError = '';
+            this.loadingCollection = true;
+            this.selectedIndex = -1;
+
+            try {
+                const res = await fetch('assets/data/gallery/' + collection.file);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                this.images = await res.json();
+            } catch (error) {
+                console.error('Failed to load collection ' + id + ':', error);
+                this.collectionError = 'Could not load this collection. Please try again.';
+            } finally {
+                this.loadingCollection = false;
+            }
+
+            if (!skipHistory) {
+                history.replaceState(null, '', window.location.pathname + '?collection=' + encodeURIComponent(id));
+            }
+        },
+
+        backToIndex() {
+            this.view = 'index';
+            this.activeCollection = null;
+            this.images = [];
+            this.selectedIndex = -1;
+            history.replaceState(null, '', window.location.pathname);
+        },
+
+        /** Remote/cloud images only render if they load; on error show a fallback. */
+        markFailed(src) {
+            this.failed = Object.assign({}, this.failed, { [src]: true });
+        },
+
+        openLightbox(index) {
+            this.selectedIndex = index;
+        },
+
+        closeLightbox() {
+            this.selectedIndex = -1;
+        },
+
+        navigateLightbox(direction) {
+            const count = this.images.length;
+            if (count === 0) return;
+            this.selectedIndex = (this.selectedIndex + direction + count) % count;
+        },
+
+        onKeydown(event) {
+            if (this.selectedIndex < 0) return;
+            if (event.key === 'Escape') this.closeLightbox();
+            else if (event.key === 'ArrowLeft') this.navigateLightbox(-1);
+            else if (event.key === 'ArrowRight') this.navigateLightbox(1);
+        },
+
+        formatDate(dateString) {
+            if (!dateString) return '';
+            try {
+                const datePart = String(dateString).replace(/^(\d{4}):(\d{2}):(\d{2})\s+/, '$1-$2-$3T');
+                const parsedDate = new Date(datePart);
+                if (isNaN(parsedDate.getTime())) return dateString;
+                return parsedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            } catch (e) {
+                return dateString;
+            }
+        }
+    }),
+    mounted() {
+        window.addEventListener('keydown', this.handleKeyboardShortcuts);
+        document.addEventListener('keydown', this.onKeydown);
+        window.addEventListener('resize', this.updateGalleryHiveMetrics);
+        this.loadIndex();
+
+        // Populate the Journal submenu with real article links.
+        const self = this;
+        fetch('assets/data/journal/index.json')
+            .then(function (response) { return response.ok ? response.json() : Promise.reject(new Error('HTTP ' + response.status)); })
+            .then(function (posts) {
+                const journalLink = self.navLinks.find(function (link) { return link.id === 'journal'; });
+                if (journalLink && posts.length > 0) {
+                    journalLink.children = posts.map(function (post) {
+                        return { id: post.id, label: post.title, href: 'journal.html?article=' + post.id, articleId: post.id };
+                    });
+                }
+            })
+            .catch(function () { /* Submenu stays hidden if data is unavailable. */ });
+    },
+    beforeUnmount() {
+        window.removeEventListener('keydown', this.handleKeyboardShortcuts);
+        document.removeEventListener('keydown', this.onKeydown);
+        window.removeEventListener('resize', this.updateGalleryHiveMetrics);
+        document.body.style.overflow = '';
+    }
+};
+</script>
+<script src="assets/js/page-template-loader.js"></script>
+</body>
+</html>

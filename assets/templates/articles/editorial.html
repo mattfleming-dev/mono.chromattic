@@ -1,0 +1,35 @@
+<article class="article-full glass-strong article-layout article-editorial" role="region" :aria-labelledby="'article-title-' + post.id">
+    <button type="button" class="close-article article-editorial-close" @click="$emit('close')" aria-label="Close article">
+        <i class="fa fa-times" aria-hidden="true"></i><span>Close</span>
+    </button>
+    <div class="article-editorial-lead">
+        <figure class="article-editorial-image">
+            <img :src="post.image" :alt="post.title" fetchpriority="high">
+            <figcaption v-if="post.imageCaption">{{ post.imageCaption }}</figcaption>
+        </figure>
+        <header class="article-editorial-heading">
+            <p class="article-layout-kicker">{{ post.location || 'Photography journal' }}</p>
+            <h1 :id="'article-title-' + post.id">{{ post.title }}</h1>
+            <p class="article-layout-deck">{{ post.excerpt }}</p>
+            <span class="post-date"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; {{ formattedDate }}</span>
+            <div class="article-editorial-tags">
+                <button type="button" v-for="tag in post.tags" :key="tag" class="tag" @click="$emit('filter-tag', tag)">#{{ tag }}</button>
+            </div>
+        </header>
+    </div>
+    <div class="article-editorial-body">
+        <p v-if="contentError" class="loading" role="alert">{{ contentError }}</p>
+        <div v-else class="article-full-content" v-html="contentHtml"></div>
+        <article-story-blocks v-if="!contentError && storyBlocks && storyBlocks.length" :blocks="storyBlocks"></article-story-blocks>
+    </div>
+    <nav class="article-nav" aria-label="Article navigation">
+        <button type="button" class="article-nav-btn prev" @click="$emit('navigate', 'prev')" :disabled="!previousArticle">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            <span><span class="nav-label">Previous</span><span class="nav-title">{{ previousArticle ? previousArticle.title : 'No previous article' }}</span></span>
+        </button>
+        <button type="button" class="article-nav-btn next" @click="$emit('navigate', 'next')" :disabled="!nextArticle">
+            <span><span class="nav-label">Next</span><span class="nav-title">{{ nextArticle ? nextArticle.title : 'No next article' }}</span></span>
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </button>
+    </nav>
+</article>

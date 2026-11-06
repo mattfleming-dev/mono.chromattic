@@ -1,0 +1,38 @@
+{
+  "id": 3,
+  "title": "A Field Guide to Zoo Photography",
+  "date": "2025-10-12",
+  "excerpt": "Fences, glass, crowds and harsh sun: practical ways to make honest wildlife pictures where the animals are close but the conditions are not ideal.",
+  "image": "assets/gallery/local/japan/DSCF9470.jpg",
+  "tags": [
+    "wildlife",
+    "telephoto",
+    "technique"
+  ],
+  "location": "Japan",
+  "author": "Mono Chromattic",
+  "imageCaption": "Penguins at the mouth of their burrow.",
+  "content": "## Work with the constraints\n\nA zoo is a good place to practise wildlife technique: the animals are predictable, the light is the hard part.\n\n### Settings that worked\n\n| Subject | Aperture | Shutter | Focal length |\n| --- | --- | --- | --- |\n| Penguins | f/6.3 | 1/500 s | about 150 mm |\n| Soaring bird | f/8 | 1/800 s | 300 mm |\n| Dragonfly | f/8 | 1/500 s | 300 mm |\n| Pelicans | f/8 | 1/1250 s | about 64 mm |\n\n### Rules of thumb\n\n1. **Get close to the fence.** A wide aperture and a lens pressed near the wire makes it vanish.\n2. **Shoot at eye level** with the animal whenever you can.\n3. **Include the habitat.** A bit of rock, water or foliage tells the viewer where they are.\n4. **Be patient.** Wait for the head to turn.\n",
+  "blocks": [
+    {
+      "type": "gallery",
+      "title": "Selected frames",
+      "collection": "wildlife-and-nature",
+      "columns": 3,
+      "limit": 6
+    },
+    {
+      "type": "paragraph-image",
+      "align": "right",
+      "collection": "wildlife-and-nature",
+      "src": "assets/gallery/local/japan/DSCF9587.jpg",
+      "caption": "A dragonfly on a stone ledge.",
+      "text": "Not every subject needs a big lens. Dragonflies often sit still on a favourite perch, which lets you stay at a respectful distance and still fill the frame."
+    },
+    {
+      "type": "quote",
+      "text": "Good wildlife pictures are mostly about waiting well.",
+      "attribution": "Field notes"
+    }
+  ]
+}
