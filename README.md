@@ -64,6 +64,13 @@ The bundled journal entries are written to show what the system can do:
 | Reading Camera Settings in Plain Terms | editorial | Gallery built from explicit image references with captions |
 | How This Journal Works | magazine | Documentation written with every block type |
 
+## Roadmap
+
+This project is under active development. Planned work:
+
+- **Additional templates** – more page templates and journal article layouts beyond the current four, plus further gallery layouts.
+- **Automated content delivery** – tooling to generate and update the gallery and journal JSON data automatically, and to process and publish images (resizing, metadata stripping and collection updates), so adding content no longer means editing JSON by hand.
+
 ## Credits and licensing
 
 - Photographs in `assets/gallery/` are © the repository owner, all rights reserved. Please do not reuse them without permission.
